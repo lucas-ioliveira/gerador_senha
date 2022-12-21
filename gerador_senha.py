@@ -17,23 +17,29 @@ caracteres = '[]{}()*#;/,-_%'
 # Qualquer valor considerado inválido é recusado, permitindo ao usuário
 # tentar inserir outro valor.
 
-# Valores inválidos são valores não numéricos ou menores que 8, que é
-# considerado um ótimo tamanho mínimo para senhas fortes.
+# Valores inválidos são valores:
+#  + não numéricos;
+#  + menores que 8, que é considerado um tamanho mínimo para senhas fortes;
+#  + maiores que 76, que é considerado o limite máximo para o método `sample`.
 
 while (True):
     try:
         tamanho = int(input('Digite qual o tamanho da senha: '))
-        if tamanho < 8:
+        if tamanho < 8 or tamanho > 76:
             raise Exception
         break
     except:
-        print('Por favor, insira um valor inteiro maior ou igual a 8.')
+        print('Por favor, insira um valor inteiro entre 8 e 76.')
 
-# Gerando a senha com todos os caracteres
+# Gerando a senha com todos os caracteres.
 
+print('Gerando sua senha...')
 todos_caracteres = letras_minusculas + letras_maiusculas + numeros + caracteres
 senha = ''.join(random.sample(todos_caracteres, tamanho))
-print('Gerando sua senha...')
 sleep(2)
-print(f'A sua senha é: {senha}.')
+
+# Mostrando a senha gerada.
+
+print('A sua senha é:')
+print(senha)
 
